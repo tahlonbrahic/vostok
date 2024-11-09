@@ -17,7 +17,8 @@
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
         ts_ls.enable = true;
-        powershell_es.enable = true; 
+        powershell_es.enable = true;
+	powershell_es.package = null;
         yamlls.enable = true; 
       };
     };
