@@ -1,17 +1,17 @@
 {
   plugins = {
     lsp = {
-	    enable = true;
+      enable = true;
       servers = {
-	      bashls.enable = true;
+	bashls.enable = true;
         cssls.enable = true;
         dockerls.enable = true;
-	      gopls.enable = true;
+	gopls.enable = true;
         html.enable = true; 
         htmx.enable = true;
-	      jsonls.enable = true;
+	jsonls.enable = true;
         lua_ls.enable = true;
-	      marksman.enable = true; # Markdown
+	marksman.enable = true; # Markdown
         nil_ls.enable = true; # Nix
         pyright.enable = true; # Python
         solargraph.enable = true; # Ruby
