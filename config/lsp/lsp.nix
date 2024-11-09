@@ -17,11 +17,15 @@
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
         ts_ls.enable = true;
-        html.enable = true; 
-        htmx.enable = true;
         powershell_es.enable = true; 
         yamlls.enable = true; 
       };
     };
+    lsp-format.enable = true;
+    lspsaga = {
+      enable = true;
+      ui.border = "rounded";
+    };
+    inc-rename.enable = true;
   };
 }
