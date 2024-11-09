@@ -1,7 +1,7 @@
 {
   imports = [ 
+    ./keybindings
     ./lsp
-    ./plugins
     ./ui
   ];
 }
