@@ -1,5 +1,6 @@
 {
   imports = [
-    lsp.nix
+    ./lsp.nix
+    ./none-ls.nix
   ];
 }

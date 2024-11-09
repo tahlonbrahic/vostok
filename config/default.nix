@@ -1,3 +1,7 @@
 {
-  imports = [ ];
+  imports = [ 
+    ./lsp
+    ./plugins
+    ./ui
+  ];
 }
