@@ -16,19 +16,8 @@
         lsp.autoAttach = true;
       };
     };
-    nvim-autopairs = {
-      enable = true;
-      # TODO: Add lua for nix semi-colon auto pair
-    };
-    nvim-colorizer.enable = true;   
-    nvim-tree = {
-      enable = true;
-      updateFocusedFile.enable = true;
-    };
+    nvim-colorizer.enable = true;
     specs = {
-      enable = true;
-    };
-    telescope = {
       enable = true;
     };
     todo-comments.enable = true;
