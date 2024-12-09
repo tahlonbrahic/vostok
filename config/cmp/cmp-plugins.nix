@@ -5,7 +5,6 @@
     cmp-dictionary.enable = true; # Dictionary completion
     cmp-fish.enable = true; # Fish shell completion
     cmp-look.enable = true; # Unix look for nvim-cmp
-    cmp-nixpkgs-maintainers.enable = true; # Nixpkgs maintainers completion
     cmp-nvim-lua.enable = true; # Nvim Lua API completion
     cmp-nvim-ultisnips.enable = true; # UltiSnips completions
     cmp-rg.enable = true; # ripgrep source for completions
