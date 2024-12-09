@@ -4,5 +4,6 @@
     ./keybindings
     ./lsp
     ./ui
+    ./options.nix
   ];
 }

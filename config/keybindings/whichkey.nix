@@ -17,7 +17,6 @@
       };
       registrations = {
         "<leader>l" = "+LSP";
-        "<leader>z" = "+Zen";
         "<leader>p" = "+Parameter swap";
       };
     };
