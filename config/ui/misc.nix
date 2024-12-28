@@ -16,7 +16,7 @@
         lsp.autoAttach = true;
       };
     };
-    nvim-colorizer.enable = true;
+    colorizer.enable = true;
     specs = {
       enable = true;
     };
