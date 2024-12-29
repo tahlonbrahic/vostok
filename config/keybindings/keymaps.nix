@@ -65,53 +65,6 @@
           desc = "Open a new buffer";
         };
       }
-      {
-        action = ''          function()
-                    require("nvchad.tabufline").next()
-                  end'';
-        key = "<tab>";
-        mode = "n";
-        options = {
-          noremap = true;
-          silent = true;
-          desc = "Goto the next buffer";
-        };
-      }
-      {
-        action = ''          function()
-                    require("nvchad.tabufline").prev()
-                  end'';
-        key = "<S-tab>";
-        mode = "n";
-        options = {
-          noremap = true;
-          silent = true;
-          desc = "Goto the previous buffer";
-        };
-      }
-      {
-        action = ''          function()
-                    require("nvchad.tabufline").close_buffer()
-                  end'';
-        key = "<leader>x";
-        mode = "n";
-        options = {
-          noremap = true;
-          silent = true;
-          desc = "Close this buffer";
-        };
-      }
-      /*
-      {
-        action = "";
-        key = "";
-        mode = "n";
-        options = {
-          noremap = true;
-          silent = true;
-          desc = "";
-        };
-      */
     ];
   };
 }
