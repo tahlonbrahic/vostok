@@ -5,21 +5,26 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    fuyuNoKosei = "github:TahlonBrahic/fuyu-no-kosei";
+    fuyuNoNur.url = "github:TahlonBrahic/fuyu-no-nur";
   };
 
   outputs = {
     nixvim,
+    nixpkgs,
     flake-parts,
-    fuyuNoKosei,
     ...
-  } @ inputs:
+  } @ inputs: let
+    mkPkgs = system:
+      import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
       ];
 
       imports = [
@@ -34,9 +39,11 @@
         nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
         nixvimModule = {
-          inherit (fuyuNoKosei.pkgs.${system}) pkgs;
+          pkgs = mkPkgs system;
           module = import ./config;
-          extraSpecialArgs = {};
+          extraSpecialArgs = {
+            inherit inputs system;
+          };
         };
         fuyuvim = nixvim'.makeNixvimWithModule nixvimModule;
       in {

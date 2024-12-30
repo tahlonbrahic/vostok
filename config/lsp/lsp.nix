@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  system,
+  ...
+}: {
   plugins = {
     lsp = {
       enable = true;
@@ -17,7 +21,7 @@
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
         powershell_es.enable = true;
-        powershell_es.package = pkgs.powershell_es;
+        powershell_es.package = inputs.fuyuNoNur.packages.${system}.powershell_es;
         yamlls.enable = true;
       };
     };
