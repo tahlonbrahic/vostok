@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins = {
     lsp = {
       enable = true;
@@ -16,9 +16,8 @@
         pyright.enable = true; # Python
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
-        ts_ls.enable = true;
         powershell_es.enable = true;
-        powershell_es.package = null;
+        powershell_es.package = pkgs.powershell_es;
         yamlls.enable = true;
       };
     };
