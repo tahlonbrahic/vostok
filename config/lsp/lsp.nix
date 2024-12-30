@@ -23,6 +23,7 @@
         powershell_es.enable = true;
         powershell_es.package = inputs.fuyuNoNur.packages.${system}.powershell_es;
         yamlls.enable = true;
+        ts_query_ls.package = null;
       };
     };
     lsp-format.enable = true;
