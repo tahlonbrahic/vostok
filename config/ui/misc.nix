@@ -16,7 +16,7 @@
         lsp.autoAttach = true;
       };
     };
-    colorizer.enable = true;
+    # unstable branch: colorizer.enable = true;
     specs = {
       enable = true;
     };
