@@ -1,7 +1,7 @@
 {
   # Auto-completion for neovim
   imports = [
-    ./cmp-plugins.nix
+    # ./cmp-plugins.nix
     ./nvim-cmp.nix
   ];
 }
