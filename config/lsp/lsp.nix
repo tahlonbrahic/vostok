@@ -20,8 +20,8 @@
         pyright.enable = true; # Python
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
-        powershell_es.enable = true;
-        powershell_es.package = inputs.fuyuNoNur.packages.${system}.powershell_es;
+        #powershell_es.enable = true;
+        #powershell_es.package = inputs.fuyuNoNur.packages.${system}.powershell_es;
         yamlls.enable = true;
       };
     };
