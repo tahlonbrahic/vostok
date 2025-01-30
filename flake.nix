@@ -10,7 +10,6 @@
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     fuyu-no-nur = {
       url = "github:TahlonBrahic/fuyu-no-nur";
