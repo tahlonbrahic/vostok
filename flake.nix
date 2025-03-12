@@ -56,6 +56,10 @@
         };
         fuyuvim = nixvim'.makeNixvimWithModule nixvimModule;
       in {
+        apps = {
+          default.program = fuyuvim;
+        };
+
         checks = {
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
