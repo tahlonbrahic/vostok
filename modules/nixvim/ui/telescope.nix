@@ -1,4 +1,4 @@
-_: {pkgs, ...}: {
+{pkgs, ...}: {
   plugins.telescope = {
     enable = true;
     settings = {

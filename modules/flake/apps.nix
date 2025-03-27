@@ -1,8 +1,8 @@
 {config, ...}: {
-  perSystem = _: {
+  perSystem = {system, ...}: {
     apps = {
       default = {
-        program = config.packages.default;
+        program = config.flake.packages.${system}.default;
       };
     };
   };

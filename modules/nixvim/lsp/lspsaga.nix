@@ -1,6 +1,6 @@
 _: {
   plugins.lspsaga = {
     enable = true;
-    ui.border = "rounded";
+    #ui.border = "rounded";
   };
 }

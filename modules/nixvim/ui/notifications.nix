@@ -1,7 +1,6 @@
-_: {
+{
   plugins.notify = {
     enable = true;
-    level = "info";
-    backgroundColour = "#191724";
+    settings.level = "info";
   };
 }

@@ -1,0 +1,3 @@
+{
+  luaLoader.enable = true;
+}

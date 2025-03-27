@@ -8,11 +8,12 @@
     pkgs,
     ...
   }: {
-    packages = {
+    packages = rec {
       vostok = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
         inherit pkgs;
-        module = config.flake.modules.nixvim;
+        module = config.flake.lib.loadModulesRecursively;
       };
+      default = vostok;
     };
   };
 }

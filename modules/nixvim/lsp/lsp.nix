@@ -1,11 +1,8 @@
-_: {
-  inputs,
-  system,
+{
+  pkgs,
+  lib,
   ...
-}: let
-  pkgs = import inputs.nixpkgs {inherit system;};
-  lib = inputs.nixpkgs.lib;
-in {
+}: {
   plugins = {
     lsp = {
       enable = true;
@@ -43,8 +40,6 @@ in {
         pyright.enable = true; # Python
         solargraph.enable = true; # Ruby
         taplo.enable = true; # TOML
-        #powershell_es.enable = true;
-        #powershell_es.package = inputs.fuyuNoNur.packages.${system}.powershell_es;
         yamlls.enable = true;
       };
     };

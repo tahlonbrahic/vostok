@@ -1,4 +1,4 @@
-_: {
+{
   plugins.none-ls = {
     enable = true;
     sources = {
@@ -29,7 +29,6 @@ _: {
         black.enable = true;
         isort.enable = true;
         prettier.enable = true;
-        prettier.disableTsServerFormatter = true;
         typstfmt.enable = true;
       };
     };

@@ -1,4 +1,4 @@
-_: {
+{
   plugins = {
     cmp-async-path.enable = true; # Path completion
     cmp-cmdline.enable = true; # Vim ed mode completion

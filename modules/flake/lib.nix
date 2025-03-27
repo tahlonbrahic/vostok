@@ -1,36 +1,30 @@
-{inputs, ...}:
-let
-  inherit (inputs) eris;
-in
-{
+{inputs, ...}: {
   config = {
     flake = {
-        lib =
-			  (eris.lib.load
-				{
-				  src = ../../lib;
-				  loader = eris.lib.loaders.scoped;
-				}
-			  )
-			  |>
-			  (inputs.nixpkgs.lib.attrsets.mapAttrsRecursiveCond
-				(x: builtins.isAttrs x)
-				(n: v:
-				  { lib =
-					{
-					  ${ (inputs.nixpkgs.lib.lists.last n) } = v;
-					};
-				  }
-				)
-			  )
-			  |>
-			  inputs.nixpkgs.lib.attrsets.collect (x: x ? lib)
-			  |>
-			  builtins.map (x: builtins.attrValues x)
-			  |>
-			  inputs.nixpkgs.lib.lists.flatten
-			  |>
-			  inputs.nixpkgs.lib.attrsets.mergeAttrsList;
-	    };
-	  };
+      lib = {
+        loadModulesRecursively = let
+          inherit (inputs) eris nixpkgs;
+          inherit (nixpkgs) lib;
+          view = eris.lib.load {
+            src = ../nixvim;
+            loader = eris.lib.loaders.path;
+          };
+        in
+          lib.pipe view [
+            (
+              lib.attrsets.mapAttrsRecursiveCond
+              (as: !(builtins.isPath as))
+              (_: v: {
+                module = v;
+              })
+            )
+            (lib.attrsets.collect
+              (x: x ? module))
+            (builtins.map
+              (x: builtins.attrValues x))
+            lib.lists.flatten
+          ];
+      };
+    };
+  };
 }
