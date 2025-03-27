@@ -1,77 +1,51 @@
 {
-  description = "冬のネオヴィム";
+  description = "An easy-to-use yet deceivingly complex NixVim configuration.";
+
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;}
+    (
+      {
+        config,
+        self,
+        ...
+      }: let
+        flakeModules = {
+          apps = import ./modules/flake/apps.nix {inherit config self;};
+          # lib = import ./modules/flake/lib.nix {inherit inputs;};
+          modules = import ./modules/flake/modules.nix {inherit config self inputs;};
+          overlayAttrs = import ./modules/flake/overlayAttrs.nix {inherit config;};
+          partitions = import ./modules/flake/partitions/partitions.nix;
+          packages = import ./modules/flake/packages.nix;
+          systems = import ./modules/flake/systems.nix;
+        };
+      in {
+        imports = [
+          flake-parts.flakeModules.easyOverlay
+          flake-parts.flakeModules.modules
+          flake-parts.flakeModules.partitions
+          flakeModules.apps
+          # flakeModules.lib
+          flakeModules.modules
+          flakeModules.overlayAttrs
+          flakeModules.packages
+          flakeModules.partitions
+          flakeModules.systems
+        ];
+      }
+    );
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    eris = {
+	  url = "github:tahlonbrahic/eris";
+	};
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
-    fuyu-no-nur = {
-      url = "github:TahlonBrahic/fuyu-no-nur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-
-  outputs = {
-    nixvim,
-    nixpkgs,
-    flake-parts,
-    ...
-  } @ inputs: let
-    mkPkgs = system:
-      import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = [
-        "x86_64-linux"
-      ];
-
-      imports = [
-        inputs.flake-parts.flakeModules.easyOverlay
-      ];
-
-      perSystem = {
-        system,
-        config,
-        ...
-      }: let
-        nixvimLib = nixvim.lib.${system};
-        nixvim' = nixvim.legacyPackages.${system};
-        nixvimModule = {
-          pkgs = mkPkgs system;
-          module = import ./config;
-          extraSpecialArgs = {
-            inherit inputs system;
-          };
-        };
-        fuyuvim = nixvim'.makeNixvimWithModule nixvimModule;
-      in {
-        apps = {
-          default.program = fuyuvim;
-        };
-
-        checks = {
-          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-        };
-
-        packages = {
-          inherit fuyuvim;
-          default = fuyuvim;
-        };
-
-        overlayAttrs = {
-          inherit (config.packages) fuyuvim;
-        };
-      };
-    };
 }
